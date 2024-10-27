@@ -15,7 +15,7 @@ export default {
     errorMessages() {
       let result = [];
       for (let key of Object.keys(this.validationErrors)) {
-        result.push(this.validationErrors[key].join(', '));
+        result.push(key + ': ' + this.validationErrors[key].join(', '));
       }
       return result;
     },
