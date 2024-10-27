@@ -3,4 +3,3 @@
     Hello medium clone!
   </div>
 </template>
-
