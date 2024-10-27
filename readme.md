@@ -5,8 +5,8 @@
 ```
 npm install -g @vue/cli
 vue --version # нужна версия 4.5+
-mkdir -p ~/work/project
-cd ~/work/project
+mkdir -p ~/work/realworld-vue
+cd ~/work/realworld-vue
 vue create mediumclone_vue
 ```
 Выбрать Manually select features и отметить:
@@ -26,4 +26,13 @@ vue create mediumclone_vue
 ```bash
 cd mediumclone_vue
 npm run serve
+```
+
+поднять свой backend, если лежит api.realworld.io:
+```bash
+cd ~/work/realworld-vue
+git clone https://github.com/EJIqpEP/koa-knex-realworld-example
+cd koa-knex-realworld-example
+docker compose up --build -d
+curl http://localhost:3000/api/tags
 ```
