@@ -17,7 +17,7 @@
               <fieldset class="form-group">
                 <input type="password" class="form-control form-control-lg" placeholder="Password" />
               </fieldset>
-              <button class="btn btn-lg btn-primary pull-xs-right">Sign up</button>
+              <button class="btn btn-lg btn-primary pull-xs-right" :disabled="isSubmitting">Sign up</button>
             </form>
           </div>
         </div>
@@ -32,7 +32,22 @@ export default {
   methods: {
     onSubmit() {
       console.log('form submitted');
-    }
-  }
+      // this.$store.commit('registerStart');
+      this.$store
+        .dispatch('register', {
+          email: 'a1@a.com',
+          username: 'Tim1`',
+          password: '123456aaaeee',
+        })
+        .then((user) => {
+          console.log('successfully registered user ', user);
+        });
+    },
+  },
+  computed: {
+    isSubmitting() {
+      return this.$store.state.auth.isSubmitting;
+    },
+  },
 };
 </script>

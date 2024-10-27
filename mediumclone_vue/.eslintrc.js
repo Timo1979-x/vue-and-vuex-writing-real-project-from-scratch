@@ -35,6 +35,7 @@ module.exports = {
     'import/no-unresolved': OFF,
     'import/no-extraneous-dependencies': 'off',
     'prefer-promise-reject-errors': ERROR,
+    'prefer-const': OFF,
     // 'no-multiple-empty-lines': OFF,
     'space-before-function-paren': ['error', 'never'],
     'comma-dangle': [
