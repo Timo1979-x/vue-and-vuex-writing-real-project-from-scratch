@@ -13,12 +13,12 @@ export default {
   },
   computed: {
     errorMessages() {
-      let result = [];
+      let result = []
       for (let key of Object.keys(this.validationErrors)) {
-        result.push(key + ': ' + this.validationErrors[key].join(', '));
+        result.push(key + ': ' + this.validationErrors[key].join(', '))
       }
-      return result;
+      return result
     },
   },
-};
+}
 </script>

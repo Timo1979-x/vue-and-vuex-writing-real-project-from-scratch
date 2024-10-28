@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import { getterTypes } from '@/store/modules/auth';
-import { mapGetters } from 'vuex';
+import { getterTypes } from '@/store/modules/auth'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'McvTopbar',
@@ -49,5 +49,5 @@ export default {
       isAnonymous: getterTypes.isAnonymous,
     }),
   },
-};
+}
 </script>

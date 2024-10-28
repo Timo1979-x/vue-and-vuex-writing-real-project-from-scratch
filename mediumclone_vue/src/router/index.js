@@ -1,10 +1,10 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import HomeView from '@/views/HomeView.vue';
-import Register from '@/views/Register.vue';
-import Login from '@/views/Login.vue';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import HomeView from '@/views/HomeView.vue'
+import Register from '@/views/Register.vue'
+import Login from '@/views/Login.vue'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
   {
@@ -22,10 +22,10 @@ const routes = [
     name: 'login',
     component: Login,
   },
-];
+]
 
 const router = new VueRouter({
   routes,
-});
+})
 
-export default router;
+export default router

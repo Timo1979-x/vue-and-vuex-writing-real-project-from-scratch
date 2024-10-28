@@ -24,16 +24,16 @@
 </template>
 
 <script>
-import McvValidationErrors from '@/components/ValidationErrors.vue';
-import { actionTypes } from '@/store/modules/auth';
-import { mapState } from 'vuex';
+import McvValidationErrors from '@/components/ValidationErrors.vue'
+import { actionTypes } from '@/store/modules/auth'
+import { mapState } from 'vuex'
 export default {
   name: 'McvLogin',
   data() {
     return {
       email: 'a2@a.com',
       password: '123123123',
-    };
+    }
   },
   methods: {
     onSubmit() {
@@ -43,8 +43,8 @@ export default {
           password: this.password,
         })
         .then((user) => {
-          this.$router.push({ name: 'home' });
-        });
+          this.$router.push({ name: 'home' })
+        })
     },
   },
   computed: {
@@ -54,5 +54,5 @@ export default {
     }),
   },
   components: { McvValidationErrors },
-};
+}
 </script>

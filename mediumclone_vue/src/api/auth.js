@@ -1,8 +1,8 @@
-import axios from './axios';
+import axios from './axios'
 
-const register = (credentials) => axios.post('/users', { user: credentials });
-const login = (credentials) => axios.post('/users/login', { user: credentials });
+const register = (credentials) => axios.post('/users', { user: credentials })
+const login = (credentials) => axios.post('/users/login', { user: credentials })
 
-const getCurrentUser = () => axios.get('/user');
+const getCurrentUser = () => axios.get('/user')
 
-export default { register, login, getCurrentUser };
+export default { register, login, getCurrentUser }
