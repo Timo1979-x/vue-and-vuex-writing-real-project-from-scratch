@@ -119,7 +119,6 @@ const actions = {
     })
   },
   [actionTypes.getCurrentUser](ctx) {
-    console.log('get current user')
     return new Promise((resolve, reject) => {
       ctx.commit(mutationTypes.getCurrentUserStart)
       authApi
