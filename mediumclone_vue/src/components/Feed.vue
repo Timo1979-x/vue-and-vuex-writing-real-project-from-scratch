@@ -14,18 +14,16 @@
             }}</router-link>
             <span class="date">{{ a.createdAt }}</span>
           </div>
-          <div class="pull-xs-right">
-            Add to favourites
-          </div>
+          <div class="pull-xs-right">Add to favourites</div>
         </div>
-        <router-link :to="{ name: 'article', params: {slug: a.slug}}" class="preview-link">
+        <router-link :to="{ name: 'article', params: { slug: a.slug } }" class="preview-link">
           <h1>{{ a.title }}</h1>
           <p>{{ a.description }}</p>
           <span>read more...</span>
           TAG LIST
         </router-link>
       </div>
-      PAGINATION
+      <mcv-pagination :total="total" :current-page="currentPage" :limit="limit" :url="url"></mcv-pagination>
     </div>
   </div>
 </template>
@@ -33,9 +31,18 @@
 <script>
 import { mapState } from 'vuex'
 import { actionTypes } from '@/store/modules/feed'
+import McvPagination from '@/components/Pagination.vue'
 
 export default {
   name: 'McvFeed',
+  data() {
+    return {
+      total: 500,
+      limit: 20,
+      currentPage: 5,
+      url: '/',
+    }
+  },
   props: {
     apiUrl: {
       required: true,
@@ -45,7 +52,6 @@ export default {
   computed: {
     ...mapState({
       feed: (state) => {
-        console.log('updating feed', state.feed)
         return state.feed.data
       },
       isLoading: (state) => state.feed.isLoading,
@@ -55,5 +61,6 @@ export default {
   mounted() {
     this.$store.dispatch(actionTypes.getFeed, { apiUrl: this.apiUrl })
   },
+  components: { McvPagination },
 }
 </script>
