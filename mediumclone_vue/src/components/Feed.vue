@@ -3,6 +3,8 @@
     <div v-if="isLoading">Loading {{ apiUrl }}</div>
     <div v-if="error">{{ error }}</div>
     <div v-if="feed">
+      <mcv-pagination :total="feed.articlesCount" :current-page="currentPage" :limit="limit" :url="baseUrl" />
+
       <div class="article-preview" v-for="(a, i) in feed.articles" :key="i">
         <div class="article-meta">
           <router-link :to="{ name: 'userProfile', params: { slug: a.author.username } }">
@@ -23,7 +25,7 @@
           TAG LIST
         </router-link>
       </div>
-      <mcv-pagination :total="total" :current-page="currentPage" :limit="limit" :url="url"></mcv-pagination>
+      <mcv-pagination :total="feed.articlesCount" :current-page="currentPage" :limit="limit" :url="baseUrl" />
     </div>
   </div>
 </template>
@@ -32,14 +34,14 @@
 import { mapState } from 'vuex'
 import { actionTypes } from '@/store/modules/feed'
 import McvPagination from '@/components/Pagination.vue'
+import { limit } from '@/helpers/vars'
+import qs from 'query-string'
 
 export default {
   name: 'McvFeed',
   data() {
     return {
-      total: 500,
-      limit: 20,
-      currentPage: 5,
+      limit,
       url: '/',
     }
   },
@@ -57,9 +59,34 @@ export default {
       isLoading: (state) => state.feed.isLoading,
       error: (state) => state.feed.error,
     }),
+    currentPage() {
+      return Number(this.$route.query.page || '1')
+    },
+    baseUrl() {
+      return this.$route.path
+    },
+    offset() {
+      return (this.currentPage - 1) * limit
+    }
   },
   mounted() {
-    this.$store.dispatch(actionTypes.getFeed, { apiUrl: this.apiUrl })
+    this.fetchFeed()
+  },
+  methods: {
+    fetchFeed() {
+      const parsedUrl = qs.parseUrl(this.apiUrl)
+      let newParams = {
+        ...parsedUrl.query,
+        limit,
+        offset: this.offset
+      }
+      this.$store.dispatch(actionTypes.getFeed, { apiUrl: `${parsedUrl.url}/?${qs.stringify(newParams)}` })
+    },
+  },
+  watch: {
+    currentPage(newPage, oldPage) {
+      this.fetchFeed()
+    },
   },
   components: { McvPagination },
 }
