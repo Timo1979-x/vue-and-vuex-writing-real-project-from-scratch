@@ -8,7 +8,7 @@ const state = {
 
 export const mutationTypes = {
   getFeedStart: '[feed] getFeedStart',
-  getFeedSussess: '[feed] getFeedSussess',
+  getFeedSuccess: '[feed] getFeedSussess',
   getFeedFailure: '[feed] getFeedFailure',
 }
 
@@ -41,10 +41,12 @@ const actions = {
       return feedApi
         .getFeed(apiUrl)
         .then((r) => {
+          console.log('getFeed', r.data)
           ctx.commit(mutationTypes.getFeedSuccess, r.data)
           resolve(r.data)
         })
-        .catch(() => {
+        .catch((e) => {
+          console.log('error', e)
           ctx.commit(mutationTypes.getFeedFailure)
         })
     })

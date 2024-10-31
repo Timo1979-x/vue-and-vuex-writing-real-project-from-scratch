@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import McvFeed from '@/views/Feed.vue'
+import McvFeed from '@/components/Feed.vue'
 export default {
   name: 'McvGlobalFeed',
   data() {
