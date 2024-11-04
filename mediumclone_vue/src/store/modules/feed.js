@@ -13,7 +13,7 @@ export const mutationTypes = {
 }
 
 export const actionTypes = {
-  getFeed: '[auth] getFeed',
+  getFeed: '[feed] getFeed',
 }
 
 const mutations = {

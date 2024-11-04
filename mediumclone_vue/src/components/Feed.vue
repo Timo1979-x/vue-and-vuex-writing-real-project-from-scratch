@@ -40,10 +40,7 @@ import qs from 'query-string'
 export default {
   name: 'McvFeed',
   data() {
-    return {
-      limit,
-      url: '/',
-    }
+    return { limit }
   },
   props: {
     apiUrl: {
@@ -67,7 +64,7 @@ export default {
     },
     offset() {
       return (this.currentPage - 1) * limit
-    }
+    },
   },
   mounted() {
     this.fetchFeed()
@@ -78,7 +75,7 @@ export default {
       let newParams = {
         ...parsedUrl.query,
         limit,
-        offset: this.offset
+        offset: this.offset,
       }
       this.$store.dispatch(actionTypes.getFeed, { apiUrl: `${parsedUrl.url}/?${qs.stringify(newParams)}` })
     },
