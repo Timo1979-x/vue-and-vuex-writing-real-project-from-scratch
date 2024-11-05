@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="isLoading">Loading {{ apiUrl }}</div>
-    <div v-if="error">{{ error }}</div>
+    <mcv-loading v-if="isLoading" />
+    <mcv-error-message v-if="error" :message="error"/>
     <div v-if="feed">
       <mcv-pagination :total="feed.articlesCount" :current-page="currentPage" :limit="limit" :url="baseUrl" />
 
@@ -36,6 +36,8 @@ import { actionTypes } from '@/store/modules/feed'
 import McvPagination from '@/components/Pagination.vue'
 import { limit } from '@/helpers/vars'
 import qs from 'query-string'
+import McvLoading from '@/components/Loading.vue'
+import McvErrorMessage from '@/components/ErrorMessage'
 
 export default {
   name: 'McvFeed',
@@ -85,6 +87,6 @@ export default {
       this.fetchFeed()
     },
   },
-  components: { McvPagination },
+  components: { McvPagination, McvLoading, McvErrorMessage },
 }
 </script>
