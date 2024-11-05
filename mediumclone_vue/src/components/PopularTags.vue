@@ -19,7 +19,6 @@ import { actionTypes } from '@/store/modules/popularTags'
 import McvLoading from '@/components/Loading.vue'
 import McvErrorMessage from '@/components/ErrorMessage'
 
-
 export default {
   name: 'McvPopularTags',
   data() {
